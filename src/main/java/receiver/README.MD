@@ -1,0 +1,1 @@
+此方法使用Receiver接收数据。Receiver是使用Kafka高级消费者API实现的。与所有接收器一样，从Kafka通过Receiver接收的数据存储在Spark执行器中，然后由Spark Streaming启动的作业处理数据。但是，在默认配置下，此方法可能会在失败时丢失数据（请参阅[接收器可靠性](http://spark.apache.org/docs/2.3.3/streaming-programming-guide.html#receiver-reliability)。为确保零数据丢失，必须在Spark Streaming中另外启用Write Ahead Logs（在Spark 1.2中引入）。这将同步保存所有收到的Kafka将数据写入分布式文件系统（例如HDFS）上的预写日志，以便在发生故障时可以恢复所有数据，但是性能不好。
